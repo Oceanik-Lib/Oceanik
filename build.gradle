@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
+    id 'maven-publish'
     id 'io.freefair.lombok' version '6.0.0-m2'
 }
 
@@ -31,4 +32,30 @@ idea {
 
 test {
     useJUnitPlatform()
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releaseRepo = "https://repository.hanbings.com/releases/"
+            def snapshotRepo = "https://repository.hanbings.com/snapshots/"
+            url = version.contains("-") ? snapshotRepo : releaseRepo
+            credentials {
+                username project.properties.repo_username as String
+                password project.properties.repo_password as String
+            }
+        }
+    }
 }
