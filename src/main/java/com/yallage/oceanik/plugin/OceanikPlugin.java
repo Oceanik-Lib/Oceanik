@@ -10,7 +10,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginBase;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,63 +51,63 @@ public abstract class OceanikPlugin extends PluginBase {
 
     // region # Delegated methods
 
-    @NotNull @Override public File getDataFolder() {
+    @NotNull @Override public final File getDataFolder() {
         return parent.getDataFolder();
     }
 
-    @NotNull @Override public PluginDescriptionFile getDescription() {
+    @NotNull @Override public final PluginDescriptionFile getDescription() {
         return parent.getDescription();
     }
 
-    @NotNull @Override public FileConfiguration getConfig() {
+    @NotNull @Override public final FileConfiguration getConfig() {
         return parent.getConfig();
     }
 
-    @Nullable @Override public InputStream getResource(@NotNull String filename) {
+    @Nullable @Override public final InputStream getResource(@NotNull String filename) {
         return parent.getResource(filename);
     }
 
-    @Override public void saveConfig() {
+    @Override public final void saveConfig() {
         parent.saveConfig();
     }
 
-    @Override public void saveDefaultConfig() {
+    @Override public final void saveDefaultConfig() {
         parent.saveDefaultConfig();
     }
 
-    @Override public void saveResource(@NotNull String resourcePath, boolean replace) {
+    @Override public final void saveResource(@NotNull String resourcePath, boolean replace) {
         parent.saveResource(resourcePath, replace);
     }
 
-    @Override public void reloadConfig() {
+    @Override public final void reloadConfig() {
         parent.reloadConfig();
     }
 
-    @NotNull @Override public PluginLoader getPluginLoader() {
+    @NotNull @Override public final PluginLoader getPluginLoader() {
         return parent.getPluginLoader();
     }
 
-    @NotNull @Override public Server getServer() {
+    @NotNull @Override public final Server getServer() {
         return parent.getServer();
     }
 
-    @Override public boolean isEnabled() {
+    @Override public final boolean isEnabled() {
         return parent.isEnabled();
     }
 
-    @Override public boolean isNaggable() {
+    @Override public final boolean isNaggable() {
         return parent.isNaggable();
     }
 
-    @Override public void setNaggable(boolean canNag) {
+    @Override public final void setNaggable(boolean canNag) {
         parent.setNaggable(canNag);
     }
 
-    @Nullable @Override public ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, @Nullable String id) {
+    @Nullable @Override public final ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, @Nullable String id) {
         return parent.getDefaultWorldGenerator(worldName, id);
     }
 
-    @NotNull @Override public Logger getLogger() {
+    @NotNull @Override public final Logger getLogger() {
         return parent.getLogger();
     }
 
