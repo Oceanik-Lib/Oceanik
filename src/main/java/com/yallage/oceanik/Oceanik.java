@@ -13,8 +13,9 @@ public class Oceanik {
 
     @Getter private static final Oceanik instance = new Oceanik();
 
+    private final Logger logger = Logger.getLogger("Oceanik");
+
     private Oceanik() {
-        var logger = Logger.getLogger("Oceanik");
         logger.info("Oceanik loaded successfully!");
     }
 

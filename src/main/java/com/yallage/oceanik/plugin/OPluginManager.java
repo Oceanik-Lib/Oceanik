@@ -10,8 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.yallage.oceanik.util.Base.TODO;
-import static com.yallage.oceanik.util.Base.YAML;
+import static com.yallage.oceanik.util.Base.*;
 
 /**
  * @author Milkory
@@ -35,7 +34,7 @@ public class OPluginManager {
         OceanikPlugin inst;
         try {
             desc = YAML.loadAs(IO.getResourceReader(plugin, "oceanik.yml"), OPluginDescriptionFile.class);
-            main = ClassLoader.getSystemClassLoader().loadClass(desc.getMain()).asSubclass(OceanikPlugin.class);
+            main = plugin.getClass().getClassLoader().loadClass(desc.getMain()).asSubclass(OceanikPlugin.class);
             inst = main.getConstructor().newInstance();
             inst.setParent(plugin);
         } catch (NullPointerException | ClassNotFoundException | ClassCastException | NoSuchMethodException e) {
