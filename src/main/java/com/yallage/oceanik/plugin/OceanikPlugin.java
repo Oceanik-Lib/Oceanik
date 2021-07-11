@@ -49,7 +49,7 @@ public abstract class OceanikPlugin extends PluginBase {
         return null;
     }
 
-    // region # Delegated methods
+    // region # Delegating methods
 
     @NotNull @Override public final File getDataFolder() {
         return parent.getDataFolder();

@@ -2,7 +2,6 @@ package com.yallage.oceanik.plugin;
 
 import com.yallage.oceanik.util.IO;
 import lombok.Getter;
-import org.bukkit.plugin.InvalidDescriptionException;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -28,19 +27,17 @@ public class OPluginManager {
      * @return OceanikPlugin of the JavaPlugin if succeed.
      * @throws InvalidPluginException Thrown when the specified file is an invalid plugin.
      */
-    @NotNull public OceanikPlugin loadPlugin(@NotNull JavaPlugin plugin) throws InvalidPluginException, InvalidDescriptionException {
-        OPluginDescriptionFile desc;
+    @NotNull public OceanikPlugin loadPlugin(@NotNull JavaPlugin plugin) throws InvalidPluginException {
+        OPluginDescription desc;
         Class<? extends OceanikPlugin> main;
         OceanikPlugin inst;
         try {
-            desc = YAML.loadAs(IO.getResourceReader(plugin, "oceanik.yml"), OPluginDescriptionFile.class);
+            desc = OPluginDescription.fromYaml(IO.loadYamlResource(plugin, "oceanik-plugin.yml"));
             main = plugin.getClass().getClassLoader().loadClass(desc.getMain()).asSubclass(OceanikPlugin.class);
             inst = main.getConstructor().newInstance();
             inst.setParent(plugin);
-        } catch (NullPointerException | ClassNotFoundException | ClassCastException | NoSuchMethodException e) {
-            throw new InvalidPluginException(e);
         } catch (Exception e) {
-            throw new InvalidDescriptionException(e);
+            throw new InvalidPluginException(e);
         }
         plugins.add(inst);
         return inst;
