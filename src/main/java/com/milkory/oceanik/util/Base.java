@@ -1,12 +1,13 @@
-package com.yallage.oceanik.util;
+package com.milkory.oceanik.util;
 
+import com.google.common.annotations.Beta;
 import com.google.gson.Gson;
 import org.yaml.snakeyaml.Yaml;
 
-import java.util.Random;
+import java.util.*;
 
 /**
- * Base utilities.
+ * Base utilities. (only for Java)
  *
  * @author Milkory
  */
@@ -30,6 +31,16 @@ public class Base {
 
     public static void error(String msg) {
         throw new IllegalStateException("Something went wrong: " + msg);
+    }
+
+    @Beta @SafeVarargs public static <T> List<T> listOf(T... elements) {
+        return List.of(elements);
+    }
+
+    @Beta @SafeVarargs public static <T> List<T> mutableListOf(T... elements) {
+        var list = new ArrayList<T>(elements.length);
+        list.addAll(Arrays.asList(elements));
+        return list;
     }
 
 }

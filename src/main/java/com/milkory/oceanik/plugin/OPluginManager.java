@@ -1,6 +1,7 @@
-package com.yallage.oceanik.plugin;
+package com.milkory.oceanik.plugin;
 
-import com.yallage.oceanik.util.IO;
+import com.milkory.oceanik.util.Base;
+import com.milkory.oceanik.util.IO;
 import lombok.Getter;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.yallage.oceanik.util.Base.*;
 
 /**
  * @author Milkory
@@ -44,11 +43,11 @@ public class OPluginManager {
     }
 
     public void enablePlugin(@NotNull OceanikPlugin plugin) {
-        TODO();
+        Base.TODO();
     }
 
     public void disablePlugin(@NotNull OceanikPlugin plugin) {
-        TODO();
+        Base.TODO();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.yallage.oceanik.util;
+package com.milkory.oceanik.util;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;

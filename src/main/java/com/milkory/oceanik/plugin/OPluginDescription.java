@@ -1,4 +1,4 @@
-package com.yallage.oceanik.plugin;
+package com.milkory.oceanik.plugin;
 
 import lombok.Getter;
 import lombok.ToString;

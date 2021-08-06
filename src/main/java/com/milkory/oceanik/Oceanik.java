@@ -1,4 +1,4 @@
-package com.yallage.oceanik;
+package com.milkory.oceanik;
 
 import lombok.Getter;
 
