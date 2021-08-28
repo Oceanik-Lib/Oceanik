@@ -1,30 +1,22 @@
 package com.milkory.oceanik.plugin;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.InvalidDescriptionException;
 
 /**
- * The oceanik.yml file of a {@link OceanikPlugin}.
+ * Represents an {@code oceanik.json} file of an {@link OceanikPlugin}.
  *
  * @author Milkory
  */
 @Getter
 @ToString
+@EqualsAndHashCode
 public class OPluginDescription {
-
-    final String main;
-
-    public OPluginDescription(String main) {
-        this.main = main;
-    }
-
-    public static OPluginDescription fromYaml(YamlConfiguration yaml) throws InvalidDescriptionException {
-        if (!yaml.isString("main")) {
-            throw new InvalidDescriptionException("Does not contain a main class.");
-        }
-        return new OPluginDescription(yaml.getString("main"));
-    }
-
+    private String name;
+    private String version;
+    private String description;
+    private String main;
+    private String author;
+    private String license;
 }

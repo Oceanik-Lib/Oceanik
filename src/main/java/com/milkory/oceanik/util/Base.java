@@ -33,6 +33,9 @@ public class Base {
         throw new IllegalStateException("Something went wrong: " + msg);
     }
 
+    public static void ignoreReturn(Object any) {
+    }
+
     @Beta @SafeVarargs public static <T> List<T> listOf(T... elements) {
         return List.of(elements);
     }

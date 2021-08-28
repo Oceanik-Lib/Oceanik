@@ -31,10 +31,11 @@ public class OPluginManager {
         Class<? extends OceanikPlugin> main;
         OceanikPlugin inst;
         try {
-            desc = OPluginDescription.fromYaml(IO.loadYamlResource(plugin, "oceanik-plugin.yml"));
+            desc = Base.GSON.fromJson(IO.getResourceReader(plugin, "oceanik.json"), OPluginDescription.class);
             main = plugin.getClass().getClassLoader().loadClass(desc.getMain()).asSubclass(OceanikPlugin.class);
             inst = main.getConstructor().newInstance();
             inst.setParent(plugin);
+            inst.setDescription(desc);
         } catch (Exception e) {
             throw new InvalidPluginException(e);
         }

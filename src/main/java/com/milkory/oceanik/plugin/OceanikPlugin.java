@@ -1,6 +1,7 @@
 package com.milkory.oceanik.plugin;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -8,7 +9,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginBase;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,6 +18,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static lombok.AccessLevel.*;
+
 /**
  * Represents a plugin dependent on Oceanik.
  *
@@ -25,11 +27,8 @@ import java.util.logging.Logger;
  */
 public abstract class OceanikPlugin extends PluginBase {
 
-    @Getter private Plugin parent;
-
-    void setParent(Plugin parent) {
-        this.parent = parent;
-    }
+    @Getter @Setter(PACKAGE) private Plugin parent;
+    @Getter @Setter(PACKAGE) private OPluginDescription description;
 
     @Override public void onDisable() {
     }
@@ -55,32 +54,12 @@ public abstract class OceanikPlugin extends PluginBase {
         return parent.getDataFolder();
     }
 
-    @NotNull @Override public final PluginDescriptionFile getDescription() {
-        return parent.getDescription();
-    }
-
-    @NotNull @Override public final FileConfiguration getConfig() {
-        return parent.getConfig();
-    }
-
     @Nullable @Override public final InputStream getResource(@NotNull String filename) {
         return parent.getResource(filename);
     }
 
-    @Override public final void saveConfig() {
-        parent.saveConfig();
-    }
-
-    @Override public final void saveDefaultConfig() {
-        parent.saveDefaultConfig();
-    }
-
     @Override public final void saveResource(@NotNull String resourcePath, boolean replace) {
         parent.saveResource(resourcePath, replace);
-    }
-
-    @Override public final void reloadConfig() {
-        parent.reloadConfig();
     }
 
     @NotNull @Override public final PluginLoader getPluginLoader() {
@@ -93,14 +72,6 @@ public abstract class OceanikPlugin extends PluginBase {
 
     @Override public final boolean isEnabled() {
         return parent.isEnabled();
-    }
-
-    @Override public final boolean isNaggable() {
-        return parent.isNaggable();
-    }
-
-    @Override public final void setNaggable(boolean canNag) {
-        parent.setNaggable(canNag);
     }
 
     @Nullable @Override public final ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, @Nullable String id) {
